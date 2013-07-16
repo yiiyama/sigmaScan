@@ -1,0 +1,29 @@
+SigmaScan - tool for rapid prototyping of analyses
+
+1. What it does
+This tool calculates signal significance over a given set of background samples.
+The same set of signal and backgrounds can be scanned over for different analysis cuts, thus enabling a quick first check of the feasibility of the analyses.
+
+2. How it works
+The workflow is split into two steps.
+In the first, signal and backgrounds are separately filtered according to generator-level information, and made into small ntuples that only contain analysis-level variables.
+The result of this step is common to all analyses which targets the same type of signal.
+In the second step, a scan over all signal samples is done using the user-specified list of cuts.
+
+3. Usage
+Do
+make
+in this directory. Then see the example and the line-by-line explanation in exec.cc.
+
+4. Usage of the output
+The output of the scan is a tree containing the calculated significances and the optimized parameter values.
+Each entry of the tree corresponds to one signal point.
+A TCanvas with a stack plot of the backgrounds overlaid with the signal for each variable is produced and stored in the for each point.
+See printPlots.cc in this directory for an example of the output usage.
+
+----
+Change Log
+
+Nov 28 2012:
+Added multi-thread support. Controlled by NCPU parameter in the configuration.
+Added grid parameter pattern matching on the signal file names
